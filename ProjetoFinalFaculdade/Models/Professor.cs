@@ -7,6 +7,8 @@ namespace ProjetoFinalFaculdade.Models
 {
     public class Professor
     {
+        public int Id { get; set; }
+
         public string Nome { get; set; }
 
         public int Matricula { get; set; }
@@ -18,5 +20,6 @@ namespace ProjetoFinalFaculdade.Models
         public int Telefone { get; set; }
 
         public List<Disciplina> Disciplinas { get; set; }
+
     }
 }

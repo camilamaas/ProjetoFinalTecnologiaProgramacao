@@ -1,7 +1,27 @@
-﻿@model ProjetoFinalFaculdade.Models.Aluno
+﻿@model ProjetoFinalFaculdade.ViewModels.AlunoIndexViewModel
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Aluno: @Model.Nome</h2>
+<h2>Aluno</h2>
+
+@if (@Model.Alunos.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr><th>Aluno</th> </tr>
+        </thead>
+        <tbody>
+            @foreach (var aluno in Model.Alunos)
+            {
+                <tr> <td> @Html.ActionLink(@aluno.Nome, "Details", new { aluno.Id })</td></tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não existem alunos cadastrados.</p>
+}
 

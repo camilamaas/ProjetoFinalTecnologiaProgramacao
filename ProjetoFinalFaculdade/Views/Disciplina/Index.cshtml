@@ -1,7 +1,27 @@
-﻿@model ProjetoFinalFaculdade.Models.Disciplina
+﻿@model ProjetoFinalFaculdade.ViewModels.DisciplinaIndexViewModel
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Disciplina: @Model.Nome</h2>
+<h2>Disciplina</h2>
+
+@if (@Model.Disciplinas.Count > 0)
+{
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr><th>Aluno</th> </tr>
+        </thead>
+        <tbody>
+            @foreach (var disciplina in Model.Disciplinas)
+            {
+                <tr> <td> @Html.ActionLink(disciplina.Nome, "Details", new { disciplina.Id })</td></tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não existem disciplinas cadastradas.</p>
+}
 
