@@ -4,18 +4,27 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Aluno</h2>
+<h2>Professores</h2>
 
 @if (@Model.Professores.Count > 0)
 {
     <table class="table table-bordered table-hover">
         <thead>
-            <tr><th>Aluno</th> </tr>
+            <tr>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+            </tr>
         </thead>
         <tbody>
-            @foreach (var aluno in Model.Professores)
+            @foreach (var professor in Model.Professores)
             {
-                <tr> <td> @Html.ActionLink(@aluno.Nome, "Details", new { aluno.Id })</td></tr>
+                <tr>
+                    <td> @Html.ActionLink(professor.Nome, "Details", new { professor.Id })</td>
+                    <td> @professor.Matricula</td>
+                    <td> @professor.Email</td>
+
+                </tr>
             }
         </tbody>
     </table>
