@@ -13,9 +13,7 @@ namespace ProjetoFinalFaculdade.Models
 
         public string Ementa { get; set; }
 
-        public List<Disciplina> DisciplinasPadrão { get; set; }
-
-        public List<Aluno> Alunos { get; set; }
+        public List<Disciplina> Disciplinas { get; set; }
 
         public string Duracao { get; set; }
 

@@ -20,8 +20,6 @@ namespace ProjetoFinalFaculdade.Models
 
         public Curso Curso { get; set; }
 
-        public List<Disciplina> Disciplinas { get; set; }
-
         public int Fase { get; set; }
     }
 }
