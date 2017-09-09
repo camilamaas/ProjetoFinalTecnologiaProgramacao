@@ -17,5 +17,13 @@ namespace ProjetoFinalFaculdade.Models
 
         public Professor Professor { get; set; }
 
+        //Chave estrangeira
+        public int ProfessorId { get; set; }
+
+        public Curso Curso { get; set; }
+
+        //Chave estrangeira
+        public int CursoId { get; set; }
+
     }
 }

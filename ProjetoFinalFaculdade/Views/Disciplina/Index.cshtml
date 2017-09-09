@@ -1,4 +1,4 @@
-﻿@model ProjetoFinalFaculdade.ViewModels.DisciplinaIndexViewModel
+﻿@model IEnumerable<ProjetoFinalFaculdade.Models.Disciplina>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,7 +6,7 @@
 
 <h2>Disciplinas</h2>
 
-@if (@Model.Disciplinas.Count > 0)
+@if (@Model.Any())
 {
     <table class="table table-bordered table-hover">
         <thead>
@@ -17,7 +17,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var disciplina in Model.Disciplinas)
+            @foreach (var disciplina in Model)
             {
                 <tr>
                     <td> @Html.ActionLink(disciplina.Nome, "Details", new { disciplina.Id })</td>

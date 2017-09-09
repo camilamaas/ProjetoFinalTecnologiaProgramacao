@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ProjetoFinalFaculdade.Models
+﻿namespace ProjetoFinalFaculdade.Models
 {
     public class Aluno
     {
@@ -19,6 +17,9 @@ namespace ProjetoFinalFaculdade.Models
         public int Telefone { get; set; }
 
         public Curso Curso { get; set; }
+
+        //Chave estrangeira
+        public int CursoId { get; set; }
 
         public int Fase { get; set; }
     }
