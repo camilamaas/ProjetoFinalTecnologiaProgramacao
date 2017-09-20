@@ -33,7 +33,7 @@ namespace ProjetoFinalFaculdade.Controllers
 
         public ActionResult Details(int id)
         {
-            var professor = _context.Professores.SingleOrDefault(a => a.Id == id);
+            var professor = _context.Professores.SingleOrDefault(p => p.Id == id);
             if (professor == null)
             {
                 return HttpNotFound();

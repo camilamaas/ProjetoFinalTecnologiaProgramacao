@@ -30,14 +30,14 @@ namespace ProjetoFinalFaculdade.Controllers
         // GET: Aluno
         public ActionResult Index()
         {
-            var alunos = _context.Alunos.Include(a => a.Curso).ToList();
+            var alunos = _context.Alunos.Include(c => c.Curso).ToList();
             return View(alunos);
         }
 
         public ActionResult Details(int id)
         {
 
-            var aluno = _context.Alunos.Include(a => a.Curso).SingleOrDefault(a => a.Id == id);
+            var aluno = _context.Alunos.Include(c => c.Curso).SingleOrDefault(a => a.Id == id);
             if (aluno == null)
             {
                 return HttpNotFound();

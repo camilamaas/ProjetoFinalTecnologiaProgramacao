@@ -40,7 +40,7 @@ namespace ProjetoFinalFaculdade.Controllers
 
         public ActionResult Details(int id)
         {
-            var curso = _context.Cursos.SingleOrDefault(a => a.Id == id);
+            var curso = _context.Cursos.SingleOrDefault(c => c.Id == id);
             if (curso == null)
             {
                 return HttpNotFound();
