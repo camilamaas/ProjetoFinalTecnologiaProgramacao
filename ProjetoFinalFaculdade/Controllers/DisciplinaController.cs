@@ -29,13 +29,13 @@ namespace ProjetoFinalFaculdade.Controllers
         // GET: Disciplina
         public ActionResult Index()
         {
-            var disciplinas = _context.Disciplinas.Include(a => a.Professor).ToList();
+            var disciplinas = _context.Disciplinas.Include(a => a.Professor).Include(b=> b.Curso).ToList();
             return View(disciplinas);
         }
 
         public ActionResult Details(int id)
         {
-            var disciplina = _context.Disciplinas.Include(a => a.Professor).SingleOrDefault(a => a.Id == id);
+            var disciplina = _context.Disciplinas.Include(a => a.Professor).Include(b => b.Curso).SingleOrDefault(a => a.Id == id);
             if (disciplina == null)
             {
                 return HttpNotFound();
