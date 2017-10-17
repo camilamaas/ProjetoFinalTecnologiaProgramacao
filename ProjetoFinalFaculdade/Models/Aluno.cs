@@ -30,6 +30,7 @@ namespace ProjetoFinalFaculdade.Models
         public Curso Curso { get; set; }
 
         //Chave estrangeira
+        [Display(Name = "Curso")]
         public int CursoId { get; set; }
 
         [Display(Name = "Fase")]

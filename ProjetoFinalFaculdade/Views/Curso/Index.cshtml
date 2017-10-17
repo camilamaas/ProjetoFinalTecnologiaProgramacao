@@ -6,13 +6,12 @@
 
 <h2>Cursos</h2>
 
+<p>
+    @Html.ActionLink("Novo Curso", "New", null, new { @class = "btn btn-primary" })
+</p>
+
 @if (@Model.Any())
 {
-
-    <p>
-        @Html.ActionLink("Novo Curso", "New", null, new { @class = "btn btn-primary" })
-    </p>
-
     <table class="table table-bordered table-hover">
         <thead>
             <tr>

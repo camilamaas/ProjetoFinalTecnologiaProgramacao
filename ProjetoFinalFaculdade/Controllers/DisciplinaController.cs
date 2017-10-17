@@ -87,6 +87,7 @@ namespace ProjetoFinalFaculdade.Controllers
             var viewModel = new DisciplinaIndexViewModel
             {
                 Disciplina = disciplina,
+                Professores = _context.Professores.ToList(),
                 Cursos = _context.Cursos.ToList()
             };
 
