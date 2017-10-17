@@ -1,4 +1,5 @@
 ﻿using ProjetoFinalFaculdade.Models;
+using ProjetoFinalFaculdade.ViewModels;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,12 +10,7 @@ namespace ProjetoFinalFaculdade.Controllers
     {
         private ApplicationDbContext _context;
 
-        //public List<Disciplina> Disciplinas = new List<Disciplina>
-        //{
-        //    new Disciplina {Id = 1, Nome="Programação 1", Ementa = "Desenvolver soluções.", CargaHoraria = 60},
-        //    new Disciplina {Id = 2, Nome="Banco de dados 1", Ementa = "Entender SGBD.", CargaHoraria = 120 }
-        //};
-
+        
         public DisciplinaController()
         {
             _context = new ApplicationDbContext();
@@ -41,6 +37,60 @@ namespace ProjetoFinalFaculdade.Controllers
                 return HttpNotFound();
             }
             return View(disciplina);
+        }
+
+        public ActionResult New()
+        {
+            var professores = _context.Professores.ToList();
+            var cursos = _context.Cursos.ToList();
+            var viewModel = new DisciplinaIndexViewModel
+            {
+                Professores = professores,
+                Cursos = cursos
+            };
+
+            return View("DisciplinaForm", viewModel);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Disciplina disciplina) // recebemos um cliente
+        {
+            if (disciplina.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Disciplinas.Add(disciplina);
+            }
+            else
+            {
+                var disciplinaInDb = _context.Disciplinas.Single(c => c.Id == disciplina.Id);
+
+                disciplinaInDb.Nome = disciplina.Nome;
+                disciplinaInDb.CargaHoraria = disciplina.CargaHoraria;
+                disciplinaInDb.ProfessorId = disciplina.ProfessorId;
+                disciplinaInDb.CursoId = disciplina.CursoId;
+
+            }
+
+            // faz a persistência
+            _context.SaveChanges();
+            // Voltamos para a lista de clientes
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var disciplina = _context.Disciplinas.SingleOrDefault(c => c.Id == id);
+
+            if (disciplina == null)
+                return HttpNotFound();
+
+            var viewModel = new DisciplinaIndexViewModel
+            {
+                Disciplina = disciplina,
+                Cursos = _context.Cursos.ToList()
+            };
+
+            return View("AlunoForm", viewModel);
         }
     }
 }

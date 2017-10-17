@@ -17,7 +17,7 @@ namespace ProjetoFinalFaculdade.Models
         [Display(Name = "Matricula")]
         public int Matricula { get; set; }
 
-       // [Display(Name = "Data de nascimento")]
+        [Display(Name = "Data de nascimento")]
         public string DataNascimento { get; set; }
 
         [Display(Name = "Email")]

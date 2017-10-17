@@ -1,0 +1,38 @@
+﻿@model ProjetoFinalFaculdade.ViewModels.DisciplinaIndexViewModel
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Disciplina"))
+{
+    @Html.HiddenFor(m => m.Disciplina.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Disciplina.Nome)
+        @Html.TextBoxFor(m => m.Disciplina.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Disciplina.Ementa)
+        @Html.TextBoxFor(m => m.Disciplina.Ementa, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Disciplina.CargaHoraria)
+        @Html.TextBoxFor(m => m.Disciplina.CargaHoraria, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Disciplina.ProfessorId)
+        @Html.DropDownListFor(m => m.Disciplina.ProfessorId,
+            new SelectList(Model.Professores, "Id", "Nome"),
+            "Escolha", new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Disciplina.CursoId)
+        @Html.DropDownListFor(m => m.Disciplina.CursoId,
+            new SelectList(Model.Cursos, "Id", "Nome"),
+            "Escolha", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

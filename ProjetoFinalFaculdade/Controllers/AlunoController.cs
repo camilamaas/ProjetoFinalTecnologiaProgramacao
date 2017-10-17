@@ -93,7 +93,7 @@ namespace ProjetoFinalFaculdade.Controllers
                 Cursos = _context.Cursos.ToList()
             };
 
-            return View("CustomerForm", viewModel);
+            return View("AlunoForm", viewModel);
         }
 
     }
