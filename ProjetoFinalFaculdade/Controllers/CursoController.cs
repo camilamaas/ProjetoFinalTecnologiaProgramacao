@@ -13,11 +13,6 @@ namespace ProjetoFinalFaculdade.Controllers
 
         private ApplicationDbContext _context;
 
-        //public List<Curso> Cursos = new List<Curso>
-        //{
-        //    new Curso {Id =1, Nome = "BSI", Ementa = "Esse curso visa aprender a programar!", Duracao = "4 anos", Mensalidade = 1037.85, Coordenador="Mauricio" },
-        //    new Curso {Id =2, Nome = "Moda", Ementa = "Esse curso visa aprender sobre a moda!", Duracao = "4 anos", Mensalidade = 600.65, Coordenador="Carlos" }
-        //};
 
         public CursoController()
         {
@@ -28,7 +23,7 @@ namespace ProjetoFinalFaculdade.Controllers
         {
             _context.Dispose();
         }
-                
+
 
         // GET: Curso
         public ActionResult Index()
@@ -47,6 +42,50 @@ namespace ProjetoFinalFaculdade.Controllers
             }
 
             return View(curso);
+        }
+
+        public ActionResult New()
+        {
+            var curso = new Curso();
+
+            return View("CursoForm", curso);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Curso curso) // recebemos um cliente
+        {
+            if (curso.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Cursos.Add(curso);
+            }
+            else
+            {
+                var cursoInDb = _context.Cursos.Single(c => c.Id == curso.Id);
+
+                cursoInDb.Nome = curso.Nome;
+                cursoInDb.Ementa = curso.Ementa;
+                cursoInDb.Duracao = curso.Duracao;
+                cursoInDb.Mensalidade = curso.Mensalidade;
+                cursoInDb.Coordenador = curso.Coordenador;
+
+            }
+
+            // faz a persistência
+            _context.SaveChanges();
+            // Voltamos para a lista de clientes
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var curso = _context.Cursos.SingleOrDefault(c => c.Id == id);
+
+            if (curso == null)
+                return HttpNotFound();
+
+          
+            return View("CursoForm", curso);
         }
     }
 }

@@ -1,0 +1,34 @@
+﻿@model ProjetoFinalFaculdade.Models.Curso
+@{
+    ViewBag.Title = "Novo Curso";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Curso"))
+{
+    @Html.HiddenFor(m => m.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Nome)
+        @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ementa)
+        @Html.TextBoxFor(m => m.Ementa, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Duracao)
+        @Html.TextBoxFor(m => m.Duracao, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Mensalidade)
+        @Html.TextBoxFor(m => m.Mensalidade, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Coordenador)
+        @Html.TextBoxFor(m => m.Coordenador, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

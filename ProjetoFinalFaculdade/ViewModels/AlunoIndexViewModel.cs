@@ -14,7 +14,7 @@ namespace ProjetoFinalFaculdade.ViewModels
             get
             {
                 if (Aluno != null && Aluno.Id != 0)
-                    return "Editar Curso";
+                    return "Editar Aluno";
 
                 return "Novo Aluno";
             }

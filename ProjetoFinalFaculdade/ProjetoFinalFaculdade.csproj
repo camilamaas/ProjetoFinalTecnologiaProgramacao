@@ -221,6 +221,10 @@
     <Compile Include="Migrations\201710172039006_alteracaoModelDisciplina.Designer.cs">
       <DependentUpon>201710172039006_alteracaoModelDisciplina.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710172115010_alteracaoModelCurso.cs" />
+    <Compile Include="Migrations\201710172115010_alteracaoModelCurso.Designer.cs">
+      <DependentUpon>201710172115010_alteracaoModelCurso.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -304,6 +308,7 @@
     <Content Include="Views\Professor\Details.cshtml" />
     <Content Include="Views\Aluno\AlunoForm.cshtml" />
     <Content Include="Views\Disciplina\DisciplinaForm.cshtml" />
+    <Content Include="Views\Curso\CursoForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -328,6 +333,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710172039006_alteracaoModelDisciplina.resx">
       <DependentUpon>201710172039006_alteracaoModelDisciplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710172115010_alteracaoModelCurso.resx">
+      <DependentUpon>201710172115010_alteracaoModelCurso.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
