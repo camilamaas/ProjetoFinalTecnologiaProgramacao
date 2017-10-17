@@ -19,6 +19,7 @@
                 <th>Nome</th>
                 <th>Ementa</th>
                 <th>Carga horária</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,11 @@
                     <td> @Html.ActionLink(disciplina.Nome, "Details", new { disciplina.Id })</td>
                     <td> @disciplina.Ementa</td>
                     <td> @disciplina.CargaHoraria</td>
+                    <td>
+                        <p>
+                            @Html.ActionLink("Editar", "Edit", new { disciplina.Id }, new { @class = "btn btn-primary" })
+                        </p>
+                    </td>
                 </tr>
             }
         </tbody>

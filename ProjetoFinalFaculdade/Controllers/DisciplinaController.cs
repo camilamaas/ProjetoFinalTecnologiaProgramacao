@@ -46,7 +46,8 @@ namespace ProjetoFinalFaculdade.Controllers
             var viewModel = new DisciplinaIndexViewModel
             {
                 Professores = professores,
-                Cursos = cursos
+                Cursos = cursos,
+                Disciplina = new Disciplina()
             };
 
             return View("DisciplinaForm", viewModel);
@@ -91,7 +92,7 @@ namespace ProjetoFinalFaculdade.Controllers
                 Cursos = _context.Cursos.ToList()
             };
 
-            return View("AlunoForm", viewModel);
+            return View("DisciplinaForm", viewModel);
         }
     }
 }

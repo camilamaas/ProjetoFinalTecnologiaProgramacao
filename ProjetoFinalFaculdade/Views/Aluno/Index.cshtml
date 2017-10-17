@@ -18,6 +18,7 @@
                 <th>Nome</th>
                 <th>Matricula</th>
                 <th>Email</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -27,6 +28,11 @@
                     <td> @Html.ActionLink(@aluno.Nome, "Details", new { aluno.Id })</td>
                     <td> @aluno.Matricula</td>
                     <td> @aluno.Email</td>
+                    <td>
+                        <p>
+                            @Html.ActionLink("Editar", "Edit", new { aluno.Id }, new { @class = "btn btn-primary" })
+                        </p>
+                    </td>
                 </tr>
             }
         </tbody>

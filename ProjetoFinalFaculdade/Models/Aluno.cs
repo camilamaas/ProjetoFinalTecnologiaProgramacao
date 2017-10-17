@@ -25,8 +25,7 @@ namespace ProjetoFinalFaculdade.Models
 
         [Display(Name = "Telefone")]
         public int Telefone { get; set; }
-
-        [Display(Name = "Curso")]
+        
         public Curso Curso { get; set; }
 
         //Chave estrangeira

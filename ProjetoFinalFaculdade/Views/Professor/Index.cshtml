@@ -20,6 +20,7 @@
                 <th>Nome</th>
                 <th>Matrícula</th>
                 <th>Email</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,11 @@
                     <td> @Html.ActionLink(professor.Nome, "Details", new { professor.Id })</td>
                     <td> @professor.Matricula</td>
                     <td> @professor.Email</td>
+                    <td>
+                        <p>
+                            @Html.ActionLink("Editar", "Edit", new { professor.Id }, new { @class = "btn btn-primary" })
+                        </p>
+                    </td>
 
                 </tr>
             }

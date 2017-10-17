@@ -80,7 +80,7 @@ namespace ProjetoFinalFaculdade.Controllers
                 return HttpNotFound();
 
 
-            return View("TelefoneForm", professor);
+            return View("ProfessorForm", professor);
         }
     }
 }
