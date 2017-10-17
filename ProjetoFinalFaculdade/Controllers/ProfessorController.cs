@@ -8,11 +8,7 @@ namespace ProjetoFinalFaculdade.Controllers
     {
 
         private ApplicationDbContext _context;
-        //public List<Professor> Professores = new List<Professor>
-        //{
-        //    new Professor {Id = 1, Nome="Rodrigo", Matricula = 1, DataNascimento = "22/06/1978", Email = "rodrigo@catolica", Telefone = 12341234},
-        //    new Professor {Id = 2, Nome="Leonardo", Matricula = 2, DataNascimento = "05/09/1980", Email = "leonardo@catolica", Telefone = 15698745}
-        //};
+      
 
         public ProfessorController()
         {
@@ -40,6 +36,51 @@ namespace ProjetoFinalFaculdade.Controllers
             }
 
             return View(professor);
+        }
+
+        public ActionResult New()
+        {
+            var professor = new Professor();
+
+            return View("ProfessorForm", professor);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Professor professor) // recebemos um cliente
+        {
+            if (professor.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Professores.Add(professor);
+            }
+            else
+            {
+                var professorInDb = _context.Professores.Single(c => c.Id == professor.Id);
+
+                professorInDb.Nome = professor.Nome;
+                professorInDb.CPF = professor.CPF;
+                professorInDb.Matricula = professor.Matricula;
+                professorInDb.DataNascimento = professor.DataNascimento;
+                professorInDb.Email = professor.Email;
+                professorInDb.Telefone = professor.Telefone;
+
+            }
+
+            // faz a persistência
+            _context.SaveChanges();
+            // Voltamos para a lista de clientes
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var professor = _context.Professores.SingleOrDefault(c => c.Id == id);
+
+            if (professor == null)
+                return HttpNotFound();
+
+
+            return View("TelefoneForm", professor);
         }
     }
 }
