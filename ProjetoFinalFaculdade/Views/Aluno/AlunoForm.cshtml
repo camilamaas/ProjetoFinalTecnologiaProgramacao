@@ -1,0 +1,44 @@
+﻿@model ProjetoFinalFaculdade.ViewModels.AlunoIndexViewModel
+@{
+    ViewBag.Title = Model.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("Save", "Aluno"))
+{
+    @Html.HiddenFor(m => m.Aluno.Id)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Aluno.Nome)
+        @Html.TextBoxFor(m => m.Aluno.Nome, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Aluno.CPF)
+        @Html.TextBoxFor(m => m.Aluno.CPF, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Aluno.Matricula)
+        @Html.TextBoxFor(m => m.Aluno.Matricula, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Aluno.DataNascimento)
+        @Html.TextBoxFor(m => m.Aluno.DataNascimento, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Aluno.Email)
+        @Html.TextBoxFor(m => m.Aluno.Email, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Aluno.Telefone)
+        @Html.TextBoxFor(m => m.Aluno.Telefone, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Aluno.CursoId)
+        @Html.DropDownListFor(m => m.Aluno.CursoId,
+            new SelectList(Model.Cursos, "Id", "Nome"),
+            "Escolha", new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+}

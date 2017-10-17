@@ -213,9 +213,9 @@
     <Compile Include="Migrations\201709060034517_AdicionadoChaveEstrangeira.Designer.cs">
       <DependentUpon>201709060034517_AdicionadoChaveEstrangeira.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201709091337154_PopulateAluno.cs" />
-    <Compile Include="Migrations\201709091337154_PopulateAluno.Designer.cs">
-      <DependentUpon>201709091337154_PopulateAluno.cs</DependentUpon>
+    <Compile Include="Migrations\201710110036069_alteracaoModel.cs" />
+    <Compile Include="Migrations\201710110036069_alteracaoModel.Designer.cs">
+      <DependentUpon>201710110036069_alteracaoModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -298,6 +298,7 @@
     <Content Include="Views\Curso\Details.cshtml" />
     <Content Include="Views\Disciplina\Details.cshtml" />
     <Content Include="Views\Professor\Details.cshtml" />
+    <Content Include="Views\Aluno\AlunoForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -317,8 +318,8 @@
     <EmbeddedResource Include="Migrations\201709060034517_AdicionadoChaveEstrangeira.resx">
       <DependentUpon>201709060034517_AdicionadoChaveEstrangeira.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201709091337154_PopulateAluno.resx">
-      <DependentUpon>201709091337154_PopulateAluno.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710110036069_alteracaoModel.resx">
+      <DependentUpon>201710110036069_alteracaoModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

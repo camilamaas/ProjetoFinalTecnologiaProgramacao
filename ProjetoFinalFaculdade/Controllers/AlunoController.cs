@@ -10,13 +10,7 @@ namespace ProjetoFinalFaculdade.Controllers
     public class AlunoController : Controller
     {
         private ApplicationDbContext _context;
-
-        //public List<Aluno> Alunos = new List<Aluno>
-        //{
-        //    new Aluno {Id = 1, Nome="Camila", CPF = "001", Matricula = 1, DataNascimento = "10/11/1998", Email = "camila@catolica", Telefone = 12341234, Fase = 1 },
-        //    new Aluno {Id = 2, Nome="Joao", CPF = "002", Matricula = 2, DataNascimento = "10/01/1997", Email = "joao@catolica", Telefone = 12341234, Fase = 1 }
-        //};
-
+        
         public AlunoController()
         {
             _context = new ApplicationDbContext();
@@ -45,5 +39,62 @@ namespace ProjetoFinalFaculdade.Controllers
 
             return View(aluno);
         }
+
+        public ActionResult New()
+        {
+            var cursos = _context.Cursos.ToList();
+            var viewModel = new AlunoIndexViewModel
+            {
+                Cursos = cursos
+            };
+
+            return View("AlunoForm", viewModel);
+        }
+
+        [HttpPost] // só será acessada com POST
+        public ActionResult Save(Aluno aluno) // recebemos um cliente
+        {
+            if (aluno.Id == 0)
+            {
+                // armazena o cliente em memória
+                _context.Alunos.Add(aluno);
+            }
+            else
+            {
+                var alunoInDb = _context.Alunos.Single(c => c.Id == aluno.Id);
+
+                alunoInDb.Nome = aluno.Nome;
+                alunoInDb.CPF = aluno.CPF;
+                alunoInDb.Matricula = aluno.Matricula;
+                alunoInDb.DataNascimento = aluno.DataNascimento;
+                alunoInDb.Email = aluno.Email;
+                alunoInDb.Telefone = aluno.Telefone;
+                alunoInDb.CursoId = aluno.CursoId;
+                alunoInDb.Fase = aluno.Fase;
+
+            }
+
+            // faz a persistência
+            _context.SaveChanges();
+            // Voltamos para a lista de clientes
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var aluno = _context.Alunos.SingleOrDefault(c => c.Id == id);
+
+            if (aluno == null)
+                return HttpNotFound();
+
+            var viewModel = new AlunoIndexViewModel
+            {
+                Aluno = aluno,
+                Cursos = _context.Cursos.ToList()
+            };
+
+            return View("CustomerForm", viewModel);
+        }
+
     }
 }
