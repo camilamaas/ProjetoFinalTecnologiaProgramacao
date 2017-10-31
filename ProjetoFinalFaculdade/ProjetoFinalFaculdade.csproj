@@ -229,6 +229,26 @@
     <Compile Include="Migrations\201710172137196_alteracaoModelProfessor.Designer.cs">
       <DependentUpon>201710172137196_alteracaoModelProfessor.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201710302318547_camposObrigatoriosAluno.cs" />
+    <Compile Include="Migrations\201710302318547_camposObrigatoriosAluno.Designer.cs">
+      <DependentUpon>201710302318547_camposObrigatoriosAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710302332506_camposObrigatoriosCurso.cs" />
+    <Compile Include="Migrations\201710302332506_camposObrigatoriosCurso.Designer.cs">
+      <DependentUpon>201710302332506_camposObrigatoriosCurso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710302349009_camposObrigatoriosDisciplina.cs" />
+    <Compile Include="Migrations\201710302349009_camposObrigatoriosDisciplina.Designer.cs">
+      <DependentUpon>201710302349009_camposObrigatoriosDisciplina.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311510316_camposObrigatoriosProfessor.cs" />
+    <Compile Include="Migrations\201710311510316_camposObrigatoriosProfessor.Designer.cs">
+      <DependentUpon>201710311510316_camposObrigatoriosProfessor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710311521073_adicionadaValidacaoIdadeMinimaAluno.cs" />
+    <Compile Include="Migrations\201710311521073_adicionadaValidacaoIdadeMinimaAluno.Designer.cs">
+      <DependentUpon>201710311521073_adicionadaValidacaoIdadeMinimaAluno.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -237,6 +257,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Professor.cs" />
+    <Compile Include="Models\ValidaIdadeMinimaAluno.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AlunoIndexViewModel.cs" />
@@ -257,9 +278,23 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\cldr.js" />
+    <Content Include="Scripts\cldr\event.js" />
+    <Content Include="Scripts\cldr\supplemental.js" />
+    <Content Include="Scripts\cldr\unresolved.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\globalize\currency.js" />
+    <Content Include="Scripts\globalize\date.js" />
+    <Content Include="Scripts\globalize\message.js" />
+    <Content Include="Scripts\globalize\number.js" />
+    <Content Include="Scripts\globalize\plural.js" />
+    <Content Include="Scripts\globalize\relative-time.js" />
+    <Content Include="Scripts\globalize\unit.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.globalize.js" />
+    <Content Include="Scripts\jquery.validate.globalize.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -344,6 +379,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710172137196_alteracaoModelProfessor.resx">
       <DependentUpon>201710172137196_alteracaoModelProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710302318547_camposObrigatoriosAluno.resx">
+      <DependentUpon>201710302318547_camposObrigatoriosAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710302332506_camposObrigatoriosCurso.resx">
+      <DependentUpon>201710302332506_camposObrigatoriosCurso.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710302349009_camposObrigatoriosDisciplina.resx">
+      <DependentUpon>201710302349009_camposObrigatoriosDisciplina.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311510316_camposObrigatoriosProfessor.resx">
+      <DependentUpon>201710311510316_camposObrigatoriosProfessor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710311521073_adicionadaValidacaoIdadeMinimaAluno.resx">
+      <DependentUpon>201710311521073_adicionadaValidacaoIdadeMinimaAluno.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

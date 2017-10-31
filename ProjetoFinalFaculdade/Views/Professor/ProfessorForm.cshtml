@@ -8,18 +8,22 @@
 
 @using (Html.BeginForm("Save", "Professor"))
 {
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Id)
     <div class="form-group">
         @Html.LabelFor(m => m.Nome)
         @Html.TextBoxFor(m => m.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Nome)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.CPF)
         @Html.TextBoxFor(m => m.CPF, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.CPF)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Matricula)
         @Html.TextBoxFor(m => m.Matricula, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Matricula)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.DataNascimento)
@@ -28,6 +32,7 @@
     <div class="form-group">
         @Html.LabelFor(m => m.Email)
         @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Email)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Telefone)
@@ -35,4 +40,16 @@
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                Globalize.culture("pt-BR");
+                return this.optional(element) || Globalize.parseDate(value) !== null;
+            }
+        })
+    </script>
 }

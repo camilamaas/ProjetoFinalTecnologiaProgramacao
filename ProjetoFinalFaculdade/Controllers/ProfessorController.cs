@@ -8,7 +8,7 @@ namespace ProjetoFinalFaculdade.Controllers
     {
 
         private ApplicationDbContext _context;
-      
+
 
         public ProfessorController()
         {
@@ -46,8 +46,14 @@ namespace ProjetoFinalFaculdade.Controllers
         }
 
         [HttpPost] // só será acessada com POST
-        public ActionResult Save(Professor professor) // recebemos um cliente
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Professor professor) // recebemos um professor
         {
+            if (!ModelState.IsValid)
+            {
+                return View("ProfessorForm", professor);
+            }
+
             if (professor.Id == 0)
             {
                 // armazena o cliente em memória

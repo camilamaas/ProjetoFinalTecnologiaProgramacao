@@ -54,8 +54,20 @@ namespace ProjetoFinalFaculdade.Controllers
         }
 
         [HttpPost] // só será acessada com POST
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Disciplina disciplina) // recebemos um cliente
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new DisciplinaIndexViewModel
+                {
+                    Disciplina = disciplina,
+                    Professores = _context.Professores.ToList()
+                };
+
+                return View("DisciplinaForm", viewModel);
+            }
+
             if (disciplina.Id == 0)
             {
                 // armazena o cliente em memória

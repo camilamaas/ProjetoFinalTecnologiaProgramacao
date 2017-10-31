@@ -8,31 +8,49 @@
 
 @using (Html.BeginForm("Save", "Disciplina"))
 {
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Disciplina.Id)
     <div class="form-group">
         @Html.LabelFor(m => m.Disciplina.Nome)
         @Html.TextBoxFor(m => m.Disciplina.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Disciplina.Nome)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Disciplina.Ementa)
         @Html.TextBoxFor(m => m.Disciplina.Ementa, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Disciplina.Ementa)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Disciplina.CargaHoraria)
         @Html.TextBoxFor(m => m.Disciplina.CargaHoraria, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Disciplina.CargaHoraria)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Disciplina.ProfessorId)
         @Html.DropDownListFor(m => m.Disciplina.ProfessorId,
             new SelectList(Model.Professores, "Id", "Nome"),
             "Escolha", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Disciplina.ProfessorId)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Disciplina.CursoId)
         @Html.DropDownListFor(m => m.Disciplina.CursoId,
             new SelectList(Model.Cursos, "Id", "Nome"),
             "Escolha", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Disciplina.CursoId)
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>
+}
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                Globalize.culture("pt-BR");
+                return this.optional(element) || Globalize.parseDate(value) !== null;
+            }
+        })
+    </script>
 }

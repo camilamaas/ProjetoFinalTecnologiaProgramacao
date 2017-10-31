@@ -52,8 +52,20 @@ namespace ProjetoFinalFaculdade.Controllers
         }
 
         [HttpPost] // só será acessada com POST
-        public ActionResult Save(Aluno aluno) // recebemos um cliente
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(Aluno aluno) // recebemos um aluno
         {
+            if (!ModelState.IsValid)
+            {
+                var viewModel = new AlunoIndexViewModel
+                {
+                    Aluno = aluno,
+                    Cursos = _context.Cursos.ToList()
+                };
+
+                return View("AlunoForm", viewModel);
+            }
+
             if (aluno.Id == 0)
             {
                 // armazena o cliente em memória

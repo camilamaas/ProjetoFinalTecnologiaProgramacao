@@ -12,15 +12,19 @@ namespace ProjetoFinalFaculdade.Models
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
+        [Required]
         [Display(Name = "Ementa")]
         public string Ementa { get; set; }
 
+        [Required]
         [Display(Name = "Duracao")]
         public string Duracao { get; set; }
 
+        [Required]
         [Display(Name = "Mensalidade")]
         public double Mensalidade { get; set; }
 
+        [Required]
         [Display(Name = "Coordenador")]
         public string Coordenador { get; set; }
     }

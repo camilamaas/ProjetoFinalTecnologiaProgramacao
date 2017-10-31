@@ -1,9 +1,5 @@
 ﻿using ProjetoFinalFaculdade.Models;
-using ProjetoFinalFaculdade.ViewModels;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ProjetoFinalFaculdade.Controllers
@@ -52,8 +48,15 @@ namespace ProjetoFinalFaculdade.Controllers
         }
 
         [HttpPost] // só será acessada com POST
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Curso curso) // recebemos um cliente
         {
+
+            if (!ModelState.IsValid)
+            {
+                return View("CursoForm", curso);
+            }
+
             if (curso.Id == 0)
             {
                 // armazena o cliente em memória
@@ -84,7 +87,7 @@ namespace ProjetoFinalFaculdade.Controllers
             if (curso == null)
                 return HttpNotFound();
 
-          
+
             return View("CursoForm", curso);
         }
     }

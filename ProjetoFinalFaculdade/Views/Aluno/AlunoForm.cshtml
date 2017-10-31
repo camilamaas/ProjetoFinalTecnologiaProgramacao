@@ -8,22 +8,27 @@
 
 @using (Html.BeginForm("Save", "Aluno"))
 {
+    @Html.AntiForgeryToken()
     @Html.HiddenFor(m => m.Aluno.Id)
     <div class="form-group">
         @Html.LabelFor(m => m.Aluno.Nome)
         @Html.TextBoxFor(m => m.Aluno.Nome, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Aluno.Nome)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Aluno.CPF)
         @Html.TextBoxFor(m => m.Aluno.CPF, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Aluno.CPF)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Aluno.Matricula)
         @Html.TextBoxFor(m => m.Aluno.Matricula, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Aluno.Matricula)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Aluno.DataNascimento)
         @Html.TextBoxFor(m => m.Aluno.DataNascimento, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Aluno.DataNascimento)
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Aluno.Email)
@@ -38,11 +43,27 @@
         @Html.DropDownListFor(m => m.Aluno.CursoId,
             new SelectList(Model.Cursos, "Id", "Nome"),
             "Escolha", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Aluno.CursoId)
+
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Aluno.Fase)
         @Html.TextBoxFor(m => m.Aluno.Fase, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Aluno.Fase)
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+        $(function () {
+            $.validator.methods.date = function (value, element) {
+                Globalize.culture("pt-BR");
+                return this.optional(element) || Globalize.parseDate(value) !== null;
+            }
+        })
+    </script>
 }

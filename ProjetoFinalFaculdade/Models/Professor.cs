@@ -11,15 +11,18 @@ namespace ProjetoFinalFaculdade.Models
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
+        [Required]
         [Display(Name = "CPF")]
         public string CPF { get; set; }
 
+        [Required]
         [Display(Name = "Matricula")]
         public int Matricula { get; set; }
 
         [Display(Name = "Data de Nascimento")]
         public string DataNascimento { get; set; }
 
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

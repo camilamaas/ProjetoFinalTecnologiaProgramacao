@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoFinalFaculdade.Models
 {
@@ -11,15 +12,19 @@ namespace ProjetoFinalFaculdade.Models
         [Display(Name = "Nome")]
         public string Nome { get; set; }
 
+        [Required]
         [Display(Name = "CPF")]
         public string CPF { get; set; }
 
+        [Required]
         [Display(Name = "Matricula")]
         public int Matricula { get; set; }
 
+        [ValidaIdadeMinimaAluno]
         [Display(Name = "Data de nascimento")]
-        public string DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
+        [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -29,9 +34,11 @@ namespace ProjetoFinalFaculdade.Models
         public Curso Curso { get; set; }
 
         //Chave estrangeira
+        [Required]
         [Display(Name = "Curso")]
         public int CursoId { get; set; }
 
+        [Required]
         [Display(Name = "Fase")]
         public int Fase { get; set; }
     }
