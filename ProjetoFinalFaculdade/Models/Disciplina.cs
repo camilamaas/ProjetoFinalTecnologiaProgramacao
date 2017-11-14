@@ -17,21 +17,21 @@ namespace ProjetoFinalFaculdade.Models
 
         [Required]
         [Display(Name = "Carga horária (em horas)")]
-        public double CargaHoraria { get; set; }
+        public double? CargaHoraria { get; set; }
 
         public Professor Professor { get; set; }
 
         //Chave estrangeira
         [Required]
         [Display(Name = "Professor")]
-        public int ProfessorId { get; set; }
+        public int? ProfessorId { get; set; }
 
         public Curso Curso { get; set; }
 
         //Chave estrangeira
         [Required]
         [Display(Name = "Curso")]
-        public int CursoId { get; set; }
+        public int? CursoId { get; set; }
 
     }
 }

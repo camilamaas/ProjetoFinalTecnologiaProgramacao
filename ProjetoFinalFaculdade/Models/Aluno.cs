@@ -18,7 +18,7 @@ namespace ProjetoFinalFaculdade.Models
 
         [Required]
         [Display(Name = "Matricula")]
-        public int Matricula { get; set; }
+        public int? Matricula { get; set; }
 
         [ValidaIdadeMinimaAluno]
         [Display(Name = "Data de nascimento")]
@@ -29,7 +29,7 @@ namespace ProjetoFinalFaculdade.Models
         public string Email { get; set; }
 
         [Display(Name = "Telefone")]
-        public int Telefone { get; set; }
+        public int? Telefone { get; set; }
         
         public Curso Curso { get; set; }
 
@@ -40,6 +40,6 @@ namespace ProjetoFinalFaculdade.Models
 
         [Required]
         [Display(Name = "Fase")]
-        public int Fase { get; set; }
+        public int? Fase { get; set; }
     }
 }

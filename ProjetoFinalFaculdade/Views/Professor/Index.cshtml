@@ -14,12 +14,13 @@
 @if (@Model.Any())
 {
 
-    <table class="table table-striped table-hover">
+    <table id="professores" class="table table-striped table-hover">
         <thead>
             <tr>
                 <th>Nome</th>
                 <th>Matrícula</th>
                 <th>Email</th>
+                <th></th>
                 <th></th>
             </tr>
         </thead>
@@ -32,10 +33,12 @@
                     <td> @professor.Email</td>
                     <td>
                         <p>
-                            @Html.ActionLink("Editar", "Edit", new { professor.Id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink(" ", "Edit", new { professor.Id }, new { @class = "glyphicon glyphicon-pencil" })
                         </p>
                     </td>
-
+                    <td>
+                        <button class="btn-link js-delete" data-professor-id="@professor.Id"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    </td>
                 </tr>
             }
         </tbody>
@@ -46,3 +49,25 @@ else
     <p>Não existem alunos cadastrados.</p>
 }
 
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#professores").on("click", ".js-delete", function () {
+                var button = $(this);
+                bootbox.confirm("Quer remover o registro?", function (result) {
+                    if (result) {
+                        $.ajax({
+                            url: "/professor/delete/" + button.attr("data-professor-id"),
+                            method: "GET",
+                            success: function () {
+                                button.parents("tr").remove();
+                            }
+                        });
+                    }
+                });
+
+            });
+        });
+    </script>
+}

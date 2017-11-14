@@ -190,6 +190,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AsIsBundleOrderer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -249,6 +250,14 @@
     <Compile Include="Migrations\201710311521073_adicionadaValidacaoIdadeMinimaAluno.Designer.cs">
       <DependentUpon>201710311521073_adicionadaValidacaoIdadeMinimaAluno.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711142305278_AlterarParaTiposNullableEmAluno.cs" />
+    <Compile Include="Migrations\201711142305278_AlterarParaTiposNullableEmAluno.Designer.cs">
+      <DependentUpon>201711142305278_AlterarParaTiposNullableEmAluno.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711142334101_AlterarParaTiposNullable.cs" />
+    <Compile Include="Migrations\201711142334101_AlterarParaTiposNullable.Designer.cs">
+      <DependentUpon>201711142334101_AlterarParaTiposNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Aluno.cs" />
@@ -272,6 +281,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -290,6 +301,7 @@
     <Content Include="Scripts\globalize\plural.js" />
     <Content Include="Scripts\globalize\relative-time.js" />
     <Content Include="Scripts\globalize\unit.js" />
+    <Content Include="Scripts\helper.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -299,6 +311,7 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modelo-pt.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
@@ -394,6 +407,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201710311521073_adicionadaValidacaoIdadeMinimaAluno.resx">
       <DependentUpon>201710311521073_adicionadaValidacaoIdadeMinimaAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711142305278_AlterarParaTiposNullableEmAluno.resx">
+      <DependentUpon>201711142305278_AlterarParaTiposNullableEmAluno.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711142334101_AlterarParaTiposNullable.resx">
+      <DependentUpon>201711142334101_AlterarParaTiposNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

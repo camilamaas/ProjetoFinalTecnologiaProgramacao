@@ -106,5 +106,17 @@ namespace ProjetoFinalFaculdade.Controllers
 
             return View("DisciplinaForm", viewModel);
         }
+
+        public ActionResult Delete(int id) {
+            var disciplina = _context.Disciplinas.SingleOrDefault(c => c.Id == id);
+
+            if (disciplina == null)
+                return HttpNotFound();
+
+            _context.Disciplinas.Remove(disciplina);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
     }
 }

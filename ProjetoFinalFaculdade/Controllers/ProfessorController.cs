@@ -88,5 +88,17 @@ namespace ProjetoFinalFaculdade.Controllers
 
             return View("ProfessorForm", professor);
         }
+
+        public ActionResult Delete(int id) {
+            var professor = _context.Professores.SingleOrDefault(c => c.Id == id);
+
+            if (professor == null)
+                return HttpNotFound();
+
+            _context.Professores.Remove(professor);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
     }
 }

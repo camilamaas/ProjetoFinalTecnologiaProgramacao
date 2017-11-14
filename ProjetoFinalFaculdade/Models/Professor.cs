@@ -17,7 +17,7 @@ namespace ProjetoFinalFaculdade.Models
 
         [Required]
         [Display(Name = "Matricula")]
-        public int Matricula { get; set; }
+        public int? Matricula { get; set; }
 
         [Display(Name = "Data de Nascimento")]
         public string DataNascimento { get; set; }
@@ -27,7 +27,7 @@ namespace ProjetoFinalFaculdade.Models
         public string Email { get; set; }
 
         [Display(Name = "Telefone")]
-        public int Telefone { get; set; }
+        public int? Telefone { get; set; }
 
     }
 }

@@ -90,5 +90,17 @@ namespace ProjetoFinalFaculdade.Controllers
 
             return View("CursoForm", curso);
         }
+
+        public ActionResult Delete(int id) {
+            var curso = _context.Cursos.SingleOrDefault(c => c.Id == id);
+
+            if (curso == null)
+                return HttpNotFound();
+
+            _context.Cursos.Remove(curso);
+            _context.SaveChanges();
+
+            return new HttpStatusCodeResult(200);
+        }
     }
 }

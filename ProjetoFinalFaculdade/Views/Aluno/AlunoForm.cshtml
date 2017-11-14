@@ -27,7 +27,7 @@
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.Aluno.DataNascimento)
-        @Html.TextBoxFor(m => m.Aluno.DataNascimento, new { @class = "form-control" })
+        @Html.TextBoxFor(m => m.Aluno.DataNascimento, "{0: dd/MM/yyyy }", new { @class = "form-control" })
         @Html.ValidationMessageFor(m => m.Aluno.DataNascimento)
     </div>
     <div class="form-group">
@@ -58,12 +58,5 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
-    <script type="text/javascript">
-        $(function () {
-            $.validator.methods.date = function (value, element) {
-                Globalize.culture("pt-BR");
-                return this.optional(element) || Globalize.parseDate(value) !== null;
-            }
-        })
-    </script>
+   
 }
