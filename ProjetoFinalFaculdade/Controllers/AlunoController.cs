@@ -1,12 +1,13 @@
 ﻿using ProjetoFinalFaculdade.Models;
 using ProjetoFinalFaculdade.ViewModels;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Web.Mvc;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace ProjetoFinalFaculdade.Controllers {
+
     public class AlunoController : Controller {
+
         private ApplicationDbContext _context;
 
         public AlunoController() {
@@ -20,7 +21,10 @@ namespace ProjetoFinalFaculdade.Controllers {
         // GET: Aluno
         public ActionResult Index() {
             var alunos = _context.Alunos.Include(c => c.Curso).ToList();
-            return View(alunos);
+            if (User.IsInRole(RoleName.CanManageData))
+                return View(alunos);
+
+            return View("ReadOnlyIndex", alunos);
         }
 
         public ActionResult Details(int id) {
@@ -33,6 +37,7 @@ namespace ProjetoFinalFaculdade.Controllers {
             return View(aluno);
         }
 
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult New() {
             var cursos = _context.Cursos.ToList();
             var viewModel = new AlunoIndexViewModel {
@@ -45,6 +50,7 @@ namespace ProjetoFinalFaculdade.Controllers {
 
         [HttpPost] // só será acessada com POST
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult Save(Aluno aluno) // recebemos um aluno
         {
             if (!ModelState.IsValid) {
@@ -79,6 +85,7 @@ namespace ProjetoFinalFaculdade.Controllers {
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult Edit(int id) {
             var aluno = _context.Alunos.SingleOrDefault(c => c.Id == id);
 
@@ -94,6 +101,7 @@ namespace ProjetoFinalFaculdade.Controllers {
         }
 
 
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult Delete(int id) {
             var aluno = _context.Alunos.SingleOrDefault(c => c.Id == id);
 

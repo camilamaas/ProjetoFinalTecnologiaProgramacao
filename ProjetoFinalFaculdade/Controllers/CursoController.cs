@@ -2,46 +2,41 @@
 using System.Linq;
 using System.Web.Mvc;
 
-namespace ProjetoFinalFaculdade.Controllers
-{
-    public class CursoController : Controller
-    {
+namespace ProjetoFinalFaculdade.Controllers {
+    public class CursoController : Controller {
 
         private ApplicationDbContext _context;
 
 
-        public CursoController()
-        {
+        public CursoController() {
             _context = new ApplicationDbContext();
         }
 
-        protected override void Dispose(bool disposing)
-        {
+        protected override void Dispose(bool disposing) {
             _context.Dispose();
         }
 
 
         // GET: Curso
-        public ActionResult Index()
-        {
-
+        public ActionResult Index() {
             var cursos = _context.Cursos.ToList();
-            return View(cursos);
+            if (User.IsInRole(RoleName.CanManageData))
+                return View(cursos);
+
+            return View("ReadOnlyIndex", cursos);
         }
 
-        public ActionResult Details(int id)
-        {
+        public ActionResult Details(int id) {
             var curso = _context.Cursos.SingleOrDefault(c => c.Id == id);
-            if (curso == null)
-            {
+            if (curso == null) {
                 return HttpNotFound();
             }
 
             return View(curso);
         }
 
-        public ActionResult New()
-        {
+        [Authorize(Roles = "CanManageData")]
+        public ActionResult New() {
             var curso = new Curso();
 
             return View("CursoForm", curso);
@@ -49,21 +44,18 @@ namespace ProjetoFinalFaculdade.Controllers
 
         [HttpPost] // só será acessada com POST
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "CanManageData")]
         public ActionResult Save(Curso curso) // recebemos um cliente
         {
 
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid) {
                 return View("CursoForm", curso);
             }
 
-            if (curso.Id == 0)
-            {
+            if (curso.Id == 0) {
                 // armazena o cliente em memória
                 _context.Cursos.Add(curso);
-            }
-            else
-            {
+            } else {
                 var cursoInDb = _context.Cursos.Single(c => c.Id == curso.Id);
 
                 cursoInDb.Nome = curso.Nome;
@@ -80,8 +72,8 @@ namespace ProjetoFinalFaculdade.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int id)
-        {
+        [Authorize(Roles = "CanManageData")]
+        public ActionResult Edit(int id) {
             var curso = _context.Cursos.SingleOrDefault(c => c.Id == id);
 
             if (curso == null)
@@ -91,6 +83,7 @@ namespace ProjetoFinalFaculdade.Controllers
             return View("CursoForm", curso);
         }
 
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult Delete(int id) {
             var curso = _context.Cursos.SingleOrDefault(c => c.Id == id);
 

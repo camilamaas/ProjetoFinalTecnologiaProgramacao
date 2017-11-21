@@ -2,44 +2,40 @@
 using System.Linq;
 using System.Web.Mvc;
 
-namespace ProjetoFinalFaculdade.Controllers
-{
-    public class ProfessorController : Controller
-    {
+namespace ProjetoFinalFaculdade.Controllers {
+    public class ProfessorController : Controller {
 
         private ApplicationDbContext _context;
 
 
-        public ProfessorController()
-        {
+        public ProfessorController() {
             _context = new ApplicationDbContext();
         }
 
-        protected override void Dispose(bool disposing)
-        {
+        protected override void Dispose(bool disposing) {
             _context.Dispose();
         }
 
         // GET: Professor
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             var professores = _context.Professores.ToList();
-            return View(professores);
+            if (User.IsInRole(RoleName.CanManageData))
+                return View(professores);
+
+            return View("ReadOnlyIndex", professores);
         }
 
-        public ActionResult Details(int id)
-        {
+        public ActionResult Details(int id) {
             var professor = _context.Professores.SingleOrDefault(p => p.Id == id);
-            if (professor == null)
-            {
+            if (professor == null) {
                 return HttpNotFound();
             }
 
             return View(professor);
         }
 
-        public ActionResult New()
-        {
+        [Authorize(Roles = RoleName.CanManageData)]
+        public ActionResult New() {
             var professor = new Professor();
 
             return View("ProfessorForm", professor);
@@ -47,20 +43,17 @@ namespace ProjetoFinalFaculdade.Controllers
 
         [HttpPost] // só será acessada com POST
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult Save(Professor professor) // recebemos um professor
         {
-            if (!ModelState.IsValid)
-            {
+            if (!ModelState.IsValid) {
                 return View("ProfessorForm", professor);
             }
 
-            if (professor.Id == 0)
-            {
+            if (professor.Id == 0) {
                 // armazena o cliente em memória
                 _context.Professores.Add(professor);
-            }
-            else
-            {
+            } else {
                 var professorInDb = _context.Professores.Single(c => c.Id == professor.Id);
 
                 professorInDb.Nome = professor.Nome;
@@ -78,8 +71,8 @@ namespace ProjetoFinalFaculdade.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int id)
-        {
+        [Authorize(Roles = RoleName.CanManageData)]
+        public ActionResult Edit(int id) {
             var professor = _context.Professores.SingleOrDefault(c => c.Id == id);
 
             if (professor == null)
@@ -89,6 +82,7 @@ namespace ProjetoFinalFaculdade.Controllers
             return View("ProfessorForm", professor);
         }
 
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult Delete(int id) {
             var professor = _context.Professores.SingleOrDefault(c => c.Id == id);
 

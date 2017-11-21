@@ -4,47 +4,42 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 
-namespace ProjetoFinalFaculdade.Controllers
-{
-    public class DisciplinaController : Controller
-    {
+namespace ProjetoFinalFaculdade.Controllers {
+    public class DisciplinaController : Controller {
         private ApplicationDbContext _context;
 
-        
-        public DisciplinaController()
-        {
+
+        public DisciplinaController() {
             _context = new ApplicationDbContext();
         }
 
-        protected override void Dispose(bool disposing)
-        {
+        protected override void Dispose(bool disposing) {
             _context.Dispose();
         }
 
 
         // GET: Disciplina
-        public ActionResult Index()
-        {
+        public ActionResult Index() {
             var disciplinas = _context.Disciplinas.Include(p => p.Professor).Include(c => c.Curso).ToList();
-            return View(disciplinas);
+            if (User.IsInRole(RoleName.CanManageData))
+                return View(disciplinas);
+
+            return View("ReadOnlyIndex", disciplinas);
         }
 
-        public ActionResult Details(int id)
-        {
+        public ActionResult Details(int id) {
             var disciplina = _context.Disciplinas.Include(p => p.Professor).Include(c => c.Curso).SingleOrDefault(d => d.Id == id);
-            if (disciplina == null)
-            {
+            if (disciplina == null) {
                 return HttpNotFound();
             }
             return View(disciplina);
         }
 
-        public ActionResult New()
-        {
+        [Authorize(Roles = "CanManageData")]
+        public ActionResult New() {
             var professores = _context.Professores.ToList();
             var cursos = _context.Cursos.ToList();
-            var viewModel = new DisciplinaIndexViewModel
-            {
+            var viewModel = new DisciplinaIndexViewModel {
                 Professores = professores,
                 Cursos = cursos,
                 Disciplina = new Disciplina()
@@ -55,12 +50,11 @@ namespace ProjetoFinalFaculdade.Controllers
 
         [HttpPost] // só será acessada com POST
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "CanManageData")]
         public ActionResult Save(Disciplina disciplina) // recebemos um cliente
         {
-            if (!ModelState.IsValid)
-            {
-                var viewModel = new DisciplinaIndexViewModel
-                {
+            if (!ModelState.IsValid) {
+                var viewModel = new DisciplinaIndexViewModel {
                     Disciplina = disciplina,
                     Professores = _context.Professores.ToList()
                 };
@@ -68,13 +62,10 @@ namespace ProjetoFinalFaculdade.Controllers
                 return View("DisciplinaForm", viewModel);
             }
 
-            if (disciplina.Id == 0)
-            {
+            if (disciplina.Id == 0) {
                 // armazena o cliente em memória
                 _context.Disciplinas.Add(disciplina);
-            }
-            else
-            {
+            } else {
                 var disciplinaInDb = _context.Disciplinas.Single(c => c.Id == disciplina.Id);
 
                 disciplinaInDb.Nome = disciplina.Nome;
@@ -90,15 +81,14 @@ namespace ProjetoFinalFaculdade.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Edit(int id)
-        {
+        [Authorize(Roles = "CanManageData")]
+        public ActionResult Edit(int id) {
             var disciplina = _context.Disciplinas.SingleOrDefault(c => c.Id == id);
 
             if (disciplina == null)
                 return HttpNotFound();
 
-            var viewModel = new DisciplinaIndexViewModel
-            {
+            var viewModel = new DisciplinaIndexViewModel {
                 Disciplina = disciplina,
                 Professores = _context.Professores.ToList(),
                 Cursos = _context.Cursos.ToList()
@@ -107,6 +97,7 @@ namespace ProjetoFinalFaculdade.Controllers
             return View("DisciplinaForm", viewModel);
         }
 
+        [Authorize(Roles = RoleName.CanManageData)]
         public ActionResult Delete(int id) {
             var disciplina = _context.Disciplinas.SingleOrDefault(c => c.Id == id);
 

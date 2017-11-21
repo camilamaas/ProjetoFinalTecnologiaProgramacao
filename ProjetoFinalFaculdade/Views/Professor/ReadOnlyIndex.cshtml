@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ProjetoFinalFaculdade.Models.Professor>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Professores</h2>
+
+
+@if (@Model.Any()) {
+
+    <table id="professores" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Matrícula</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var professor in Model) {
+                <tr>
+                    <td> @Html.ActionLink(professor.Nome, "Details", new { professor.Id })</td>
+                    <td> @professor.Matricula</td>
+                    <td> @professor.Email</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+} else {
+    <p>Não existem alunos cadastrados.</p>
+}
