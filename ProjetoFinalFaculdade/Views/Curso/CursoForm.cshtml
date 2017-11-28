@@ -1,6 +1,6 @@
 ﻿@model ProjetoFinalFaculdade.Models.Curso
 @{
-    ViewBag.Title = "Novo Curso";
+    ViewBag.Title = Model.Id == 0 ? "Novo Curso" : "Editar Curso";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 

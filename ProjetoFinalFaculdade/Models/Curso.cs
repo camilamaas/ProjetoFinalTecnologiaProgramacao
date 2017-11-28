@@ -17,12 +17,12 @@ namespace ProjetoFinalFaculdade.Models
         public string Ementa { get; set; }
 
         [Required]
-        [Display(Name = "Duracao")]
+        [Display(Name = "Duração (em anos)")]
         public string Duracao { get; set; }
 
         [Required]
         [Display(Name = "Mensalidade")]
-        public double Mensalidade { get; set; }
+        public double? Mensalidade { get; set; }
 
         [Required]
         [Display(Name = "Coordenador")]

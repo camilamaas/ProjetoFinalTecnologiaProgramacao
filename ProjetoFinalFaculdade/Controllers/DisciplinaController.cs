@@ -69,6 +69,7 @@ namespace ProjetoFinalFaculdade.Controllers {
                 var disciplinaInDb = _context.Disciplinas.Single(c => c.Id == disciplina.Id);
 
                 disciplinaInDb.Nome = disciplina.Nome;
+                disciplinaInDb.Ementa = disciplina.Ementa;
                 disciplinaInDb.CargaHoraria = disciplina.CargaHoraria;
                 disciplinaInDb.ProfessorId = disciplina.ProfessorId;
                 disciplinaInDb.CursoId = disciplina.CursoId;

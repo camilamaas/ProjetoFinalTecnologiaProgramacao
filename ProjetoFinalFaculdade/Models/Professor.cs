@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjetoFinalFaculdade.Models
 {
@@ -20,7 +21,7 @@ namespace ProjetoFinalFaculdade.Models
         public int? Matricula { get; set; }
 
         [Display(Name = "Data de Nascimento")]
-        public string DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; }
 
         [Required]
         [Display(Name = "Email")]
